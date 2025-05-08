@@ -1,6 +1,7 @@
 domain: example.com
-url: https://roguezach.github.io/
+url: https://roguezach.github.io
 baseurl: "/wind"
+theme: wind-theme
 
 title: z8chary
 email: zacharyamith@outlook.com
@@ -16,6 +17,6 @@ color: "#13ccf9"
 #   shortname: example-com
 #
 rrss:
-  email: "zacharyamith@outlook.com"
+  email: "example@example.cl"
   telegram: "https://t.me/"
   discord: "https://discord.com/"
