@@ -2,10 +2,9 @@
 title: about
 layout: page
 ---
-## Modo nostra
+## Who am I?
 
-Lorem markdownum mihi; hic sonantem tenebat telum successu mollierant inani
-avoque. Harena et laedor bisque moenia veniat facit lebetes tum non?
+Hello, my name is Zachary Amith. I am a student at the University of California Merced. I have experience in GRC and IT-networking. 
 
 > Iunctissima lapsus illis; venit protervis exequialia absit tristia et
 > **locum** cum ut ad convertor tamen. Ad mea cui! Pedibus sit inque quaerit [ac
