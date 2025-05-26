@@ -17,8 +17,15 @@
     --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
+@font-face {
+    font-family: 'SF Pro';
+    src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sfprodisplay-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background);
@@ -48,7 +55,6 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
-    transition: color 0.3s ease;
 }
 
 .nav-links {
@@ -61,11 +67,24 @@ body {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
     transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
-    color: var(--primary-color);
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* Hero Section */
@@ -77,19 +96,20 @@ body {
     text-align: center;
     background: linear-gradient(135deg, var(--section-bg) 0%, var(--background) 100%);
     padding: 0 2rem;
-    transition: background 0.3s ease;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--text-color);
+    animation: slideDown 1s ease-out;
 }
 
 .hero-content p {
     font-size: 1.25rem;
     color: var(--light-text);
     margin-bottom: 2rem;
+    animation: slideUp 1s ease-out;
 }
 
 .cta-button {
@@ -100,11 +120,19 @@ body {
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .cta-button:hover {
     background: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(-1px);
 }
 
 /* Sections */
@@ -121,6 +149,25 @@ h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -10px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+h2:hover::after {
+    width: 100%;
 }
 
 /* About Section */
@@ -131,26 +178,6 @@ h2 {
 .about-content {
     display: grid;
     gap: 2rem;
-}
-
-.skills {
-    margin-top: 2rem;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-    justify-content: center;
-}
-
-.skill-tags span {
-    padding: 0.5rem 1rem;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 2rem;
-    font-size: 0.875rem;
 }
 
 .about-text {
@@ -169,11 +196,30 @@ h2 {
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 6px var(--shadow-color);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.project-card:hover::before {
+    transform: translateX(100%);
 }
 
 .project-card h3 {
@@ -191,10 +237,24 @@ h2 {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 500;
+    position: relative;
+    padding: 0.2rem 0;
+    transition: color 0.3s ease;
 }
 
-.project-link:hover {
-    text-decoration: underline;
+.project-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.project-link:hover::after {
+    width: 100%;
 }
 
 /* Contact Section */
@@ -217,11 +277,21 @@ h2 {
     display: flex;
     align-items: center;
     gap: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(10px);
 }
 
 .contact-item i {
     font-size: 1.5rem;
     color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover i {
+    transform: scale(1.2);
 }
 
 .contact-item a {
@@ -241,6 +311,28 @@ footer {
     color: white;
     padding: 2rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: borderFlow 2s linear infinite;
+}
+
+@keyframes borderFlow {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 /* Responsive Design */
@@ -270,6 +362,28 @@ footer {
 }
 
 /* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -281,6 +395,7 @@ footer {
     }
 }
 
+/* Apply animations to sections */
 .hero-content, .about-content, .project-card, .contact-content {
     animation: fadeIn 1s ease-out;
 } 
