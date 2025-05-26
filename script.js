@@ -42,4 +42,28 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-}); 
+});
+
+// Mouse follower
+const mouseFollower = document.querySelector('.mouse-follower');
+let mouseX = 0;
+let mouseY = 0;
+let followerX = 0;
+let followerY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animate() {
+    // Smooth following effect
+    followerX += (mouseX - followerX) * 0.1;
+    followerY += (mouseY - followerY) * 0.1;
+    
+    mouseFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+    
+    requestAnimationFrame(animate);
+}
+
+animate(); 
