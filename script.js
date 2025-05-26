@@ -12,15 +12,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 2px 10px var(--shadow-color)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
+// Mouse follower
+const mouseFollower = document.querySelector('.mouse-follower');
+let mouseX = 0;
+let mouseY = 0;
+let followerX = 0;
+let followerY = 0;
+
+// Initialize position
+mouseFollower.style.opacity = '1';
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
+
+function animate() {
+    // Smooth following effect
+    followerX += (mouseX - followerX) * 0.2;
+    followerY += (mouseY - followerY) * 0.2;
+    
+    mouseFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+    
+    requestAnimationFrame(animate);
+}
+
+// Start animation
+animate();
 
 // Add active class to current section in navigation
 const sections = document.querySelectorAll('section');
@@ -42,28 +60,4 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
-
-// Mouse follower
-const mouseFollower = document.querySelector('.mouse-follower');
-let mouseX = 0;
-let mouseY = 0;
-let followerX = 0;
-let followerY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function animate() {
-    // Smooth following effect
-    followerX += (mouseX - followerX) * 0.1;
-    followerY += (mouseY - followerY) * 0.1;
-    
-    mouseFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
-    
-    requestAnimationFrame(animate);
-}
-
-animate(); 
+}); 
