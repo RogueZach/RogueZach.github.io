@@ -142,6 +142,7 @@ h2 {
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1rem;
+    justify-content: center;
 }
 
 .skill-tags span {
@@ -150,6 +151,10 @@ h2 {
     color: white;
     border-radius: 2rem;
     font-size: 0.875rem;
+}
+
+.about-text {
+    text-align: center;
 }
 
 /* Projects Section */
